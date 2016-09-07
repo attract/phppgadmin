@@ -38,10 +38,3 @@ RUN sed -i 's/;include_path = ".:\/usr\/share\/php"/include_path = ".:\/var\/www
 
 # Activate a2enmod
 RUN a2enmod rewrite
-
-# Fix phppgadmin
-ADD ./phppgadmin.conf /etc/apache2/conf.d/phppgadmin
-RUN cp /etc/apache2/conf.d/phppgadmin /etc/apache2/sites-enabled/phppgadmin
-
-ADD ./config.inc.php /usr/share/phppgadmin/conf/config.inc.php
-RUN sed -i 's/variables_order = "GPCS"/variables_order = "EGPCS"/g' /etc/php5/apache2/php.ini
